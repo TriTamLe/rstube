@@ -1,38 +1,102 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: "beVNProRegu";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-Regular.ttf");
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+@font-face {
+  font-family: "beVNProBold";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-Bold.ttf");
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+@font-face {
+  font-family: "beVNProThin";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-Thin.ttf");
+}
+@font-face {
+  font-family: "beVNProLight";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-Light.ttf");
+}
+@font-face {
+  font-family: "beVNProItal";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-Italic.ttf");
+}
+@font-face {
+  font-family: "beVNProLigItal";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-LightItalic.ttf");
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+:root {
+  --bgColor: #f0eadb;
+  --mainColor: #7a413f;
+  --popColor: #d8bd77;
+  --darkColor: #454747;
+}
+
+.layOut {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bgColor);
+}
+
+.layOut .header {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  border: 1px dashed var(--darkColor);
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  justify-content: flex-start;
 }
 
-.App-link {
-  color: #61dafb;
+.layOut .header #logo {
+  background-image: url("../public/RSTubeLogo.png");
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 30px;
+  margin-right: 10px;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.layOut .header #webName {
+  margin-top: -10px;
+  font-size: 30px;
+  font-family: beVNProBold;
+  color: var(--darkColor);
+}
+
+.layOut .boards,
+.articles {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  border: 1px dashed var(--darkColor);
+}
+
+.boards {
+  width: 30%;
+  left: 0;
+}
+.articles {
+  width: 70%;
+  right: 0;
 }
