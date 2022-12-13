@@ -17,6 +17,13 @@
 }
 
 @font-face {
+  font-family: "beVNProSeBold";
+  font-style: normal;
+  font-weight: 0;
+  src: url("./fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBold.ttf");
+}
+
+@font-face {
   font-family: "beVNProThin";
   font-style: normal;
   font-weight: 0;

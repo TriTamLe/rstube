@@ -33,7 +33,12 @@ function Menu({ type }) {
   return (
     <div className="menu">
       {theArray.map((item) => (
-        <MenuItem _id={item.id} icon={item.icon} title={item.title} />
+        <MenuItem
+          key={item.id}
+          _id={item.id}
+          icon={item.icon}
+          title={item.title}
+        />
       ))}
     </div>
   );

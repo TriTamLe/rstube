@@ -1,4 +1,6 @@
 import "./App.css";
+import AddButton from "./components/Navigate/AddButton/AddButton";
+import Navigate from "./components/Navigate/Navigate";
 import Test from "./Test";
 
 function App() {
@@ -10,9 +12,12 @@ function App() {
           <div id="webName">RSTube</div>
         </div>
 
-        <div className="boards"></div>
+        <div className="boards">
+          <Navigate />
+        </div>
         <div className="articles"></div>
       </div>
+      {/* <Test/> */}
     </div>
   );
 }
