@@ -1,10 +1,11 @@
-import MenuItem from "./components/Navigate/Menu/MenuItem";
-import RSTubeLogo from "../public/RSTubeLogo.png";
+import Menu from "./components/Navigate/Menu/Menu";
 
 function Test() {
   return (
-    <div className="test">
-      <MenuItem icon={RSTubeLogo} title="Test" />
+    <div className="test" style={{ padding: 20 }}>
+      <Menu type="1" />
+      <br />
+      <Menu type="0" />
     </div>
   );
 }
