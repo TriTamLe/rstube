@@ -1,0 +1,64 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import url("../../../App.css");
+
+._artical {
+  width: 800px;
+  height: 180px;
+  border: 2px dashed var(--darkColor);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 10px;
+}
+._artical:hover {
+  background-color: var(--popColor);
+}
+
+._artical .thumbnail {
+  margin-left: 15px;
+  width: 150px;
+  height: 150px;
+  background-color: var(--bgColor);
+  border-radius: 5px;
+  border: 3px dashed var(--darkColor);
+}
+
+.the-content {
+  width: 570px;
+  height: 160px;
+  margin-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.the-content .title {
+  font-family: beVNProSeBold;
+  font-size: 25px;
+}
+.the-content .shortInfo {
+  font-family: beVNProRegu;
+  font-size: 16px;
+}
+
+.the-content .discription {
+  font-family: beVNProLigItal;
+  margin-top: 5px;
+  width: 100%;
+  height: 90%;
+}
+
+.the-content .discription p:first-of-type {
+  display: -webkit-box;
+  -webkit-line-clamp: 4;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  color: var(--darkColor);
+  opacity: 7;
+}

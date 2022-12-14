@@ -24,12 +24,12 @@ function AddButton() {
 
   return (
     <div className={"addButton" + (isOpen ? " active" : "")}>
-      <div className="icon" ref={addBtn}>
-        <AddButtonIcon />
-      </div>
-
       <div className="addingMenu">
         <Menu type="0" />
+      </div>
+      <br />
+      <div className="icon" ref={addBtn}>
+        <AddButtonIcon />
       </div>
     </div>
   );

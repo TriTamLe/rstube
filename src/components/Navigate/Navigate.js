@@ -22,11 +22,12 @@ function Navigate() {
 
   return (
     <div className="navigate">
-      {/* <div id="add">
+      <div className="boardLayout">
+        <Board board={boardTest} />
+      </div>
+      <div id="add">
         <AddButton />
-      </div> */}
-
-      <Board board={boardTest} />
+      </div>
     </div>
   );
 }

@@ -67,7 +67,7 @@
   width: 100%;
   height: 70px;
   top: 0;
-  border: 1px dashed var(--darkColor);
+  border: 1px solid var(--darkColor);
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -96,7 +96,7 @@
   position: fixed;
   top: 70px;
   bottom: 0;
-  border: 1px dashed var(--darkColor);
+  border: 1px solid var(--darkColor);
 }
 
 .boards {

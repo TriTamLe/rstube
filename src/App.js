@@ -1,7 +1,7 @@
 import "./App.css";
-import AddButton from "./components/Navigate/AddButton/AddButton";
 import Navigate from "./components/Navigate/Navigate";
 import Test from "./Test";
+import Content from "./components/Content/Content";
 
 function App() {
   return (
@@ -15,7 +15,9 @@ function App() {
         <div className="boards">
           <Navigate />
         </div>
-        <div className="articles"></div>
+        <div className="articles">
+          <Content />
+        </div>
       </div>
       {/* <Test/> */}
     </div>
