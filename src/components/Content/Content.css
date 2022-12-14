@@ -6,5 +6,63 @@
 @import url("../../App.css");
 
 .content {
-  padding: 20px;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.content ._header {
+  width: 100%;
+  height: 10%;
+  border: 1.5px solid var(--darkColor);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.content ._header h1 {
+  font-family: beVNProBold;
+  font-size: 35px;
+  margin-left: 20px;
+}
+
+.content ._header #content-icon {
+  display: flex;
+  gap: 50px;
+  width: fit-content;
+  height: 50px;
+  margin-right: 40px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#deleteChannel {
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+}
+#reloadChannel {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+}
+
+#deleteChannel:hover,
+#reloadChannel:hover {
+  background-color: var(--popColor);
+  border-radius: 10px;
+  padding: 5px;
+}
+
+.content ._articals {
+  width: 100%;
+  height: 80%;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 50px;
+  overflow: scroll;
+  scroll-behavior: smooth;
 }
