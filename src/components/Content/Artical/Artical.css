@@ -5,9 +5,16 @@
 
 @import url("../../../App.css");
 
+a,
+a:visited,
+a:hover,
+a:active {
+  color: inherit;
+}
+
 ._artical {
   width: 800px;
-  height: 180px;
+  height: 200px;
   border: 2px dashed var(--darkColor);
   display: flex;
   flex-direction: row;
@@ -15,6 +22,7 @@
   align-items: center;
   cursor: pointer;
   border-radius: 10px;
+  padding: 10px;
 }
 ._artical:hover {
   background-color: var(--popColor);
@@ -22,7 +30,7 @@
 
 ._artical .thumbnail {
   margin-left: 15px;
-  width: 150px;
+  width: 260px;
   height: 150px;
   background-color: var(--bgColor);
   border-radius: 5px;
@@ -40,7 +48,7 @@
 
 .the-content .title {
   font-family: beVNProSeBold;
-  font-size: 25px;
+  font-size: 20px;
 }
 .the-content .shortInfo {
   font-family: beVNProRegu;
@@ -56,7 +64,7 @@
 
 .the-content .discription p:first-of-type {
   display: -webkit-box;
-  -webkit-line-clamp: 4;
+  -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   color: var(--darkColor);

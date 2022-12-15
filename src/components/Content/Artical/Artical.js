@@ -14,36 +14,38 @@ function Artical(props) {
     return update;
   };
   return (
-    <div className="_artical">
-      <div className="thumbnail">
-        <img
-          src={artical.thumbnail}
-          alt={artical.title}
-          style={{
-            width: "100%",
-            height: "100%",
-          }}
-        />
+    <a href={artical.link}>
+      <div className="_artical">
+        <div className="thumbnail">
+          <img
+            src={artical.thumbnail}
+            alt={artical.title}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
+        </div>
+        <div className="the-content">
+          <div className="title">
+            <p>{artical.title}</p>
+          </div>
+          <div className="shortInfo">
+            <p>
+              {"by " +
+                artical.author +
+                "  /  views: " +
+                artical.view +
+                "  /  uploaded at " +
+                uploadedTime(artical.updateAt)}
+            </p>
+          </div>
+          <div className="discription">
+            <p>{artical.discription}</p>
+          </div>
+        </div>
       </div>
-      <div className="the-content">
-        <div className="title">
-          <p>{artical.title}</p>
-        </div>
-        <div className="shortInfo">
-          <p>
-            {"by " +
-              artical.author +
-              "  /  views: " +
-              artical.view +
-              "  /  uploaded at " +
-              uploadedTime(artical.updateAt)}
-          </p>
-        </div>
-        <div className="discription">
-          <p>{artical.discription}</p>
-        </div>
-      </div>
-    </div>
+    </a>
   );
 }
 

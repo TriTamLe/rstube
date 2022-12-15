@@ -7,6 +7,10 @@ function Board(props) {
   const _board = props.board;
   const _channelList = _board.channels;
 
+  const _reloadID = (id) => {
+    props.reloadID(id);
+  };
+
   const titleBtn = useRef();
 
   useEffect(() => {
@@ -81,46 +85,55 @@ function Board(props) {
           </div>
         )}
       </div>
-      <div className="channelList">
-        {_channelList.map((channel) => {
-          return (
-            <div className="channel" id={channel._id} key={channel._id}>
-              <div className="channelIcon">
-                <svg
-                  width="100%"
-                  height="100%"
-                  viewBox="0 0 976 995"
-                  version="1.1"
-                  xmlns="http://www.w3.org/2000/svg"
-                  style={{
-                    fillRule: "evenodd",
-                    clipRule: "evenodd",
-                    strokeLinejoin: "round",
-                    strokeMiterlimit: "2",
-                  }}
-                >
-                  <rect
-                    id="Artboard1"
-                    x="0"
-                    y="0"
-                    width="975.352"
-                    height="994.646"
-                    style={{ fill: "none" }}
-                  />
-                  <circle
-                    cx="487.676"
-                    cy="497.323"
-                    r="467.361"
-                    style={{ fill: "#7a413f" }}
-                  />
-                </svg>
-              </div>
+      {isOpen && (
+        <div className="channelList">
+          {_channelList.map((channel) => {
+            return (
+              <div
+                className="channel"
+                id={channel._id}
+                key={channel._id}
+                onClick={() => {
+                  _reloadID(channel._id);
+                }}
+              >
+                <div className="channelIcon">
+                  <svg
+                    width="100%"
+                    height="100%"
+                    viewBox="0 0 976 995"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    style={{
+                      fillRule: "evenodd",
+                      clipRule: "evenodd",
+                      strokeLinejoin: "round",
+                      strokeMiterlimit: "2",
+                    }}
+                  >
+                    <rect
+                      id="Artboard1"
+                      x="0"
+                      y="0"
+                      width="975.352"
+                      height="994.646"
+                      style={{ fill: "none" }}
+                    />
+                    <circle
+                      cx="487.676"
+                      cy="497.323"
+                      r="467.361"
+                      style={{ fill: "#7a413f" }}
+                    />
+                  </svg>
+                </div>
 
-              <div className="channelTitle">channel.title</div>
-            </div>
-          );
-        })}
-      </div>
+                <div className="channelTitle">{channel.title}</div>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 }

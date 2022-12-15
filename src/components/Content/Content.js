@@ -1,5 +1,9 @@
+import { useEffect } from "react";
+import { api } from "../../Api";
 import Artical from "./Artical/Artical";
+import { useState } from "react";
 import "./Content.css";
+import { testBoard } from "../../store";
 
 const testArticals = [
   {
@@ -48,11 +52,103 @@ const testArticals = [
   },
 ];
 
-function Content() {
+function Content(props) {
+  const [_content, setContent] = useState({
+    _id: testBoard[0].channels[0]._id,
+    author: testBoard[0].channels[0].title,
+    articals: [],
+  });
+
+  function xmlToJson(xml) {
+    // Create the return object
+    var obj = {};
+
+    if (xml.nodeType === 1) {
+      // element
+      // do attributes
+      if (xml.attributes.length > 0) {
+        obj["@attributes"] = {};
+        for (var j = 0; j < xml.attributes.length; j++) {
+          var attribute = xml.attributes.item(j);
+          obj["@attributes"][attribute.nodeName] = attribute.nodeValue;
+        }
+      }
+    } else if (xml.nodeType === 3) {
+      // text
+      obj = xml.nodeValue;
+    }
+
+    // do children
+    if (xml.hasChildNodes()) {
+      for (var i = 0; i < xml.childNodes.length; i++) {
+        var item = xml.childNodes.item(i);
+        var nodeName = item.nodeName;
+        if (typeof obj[nodeName] == "undefined") {
+          obj[nodeName] = xmlToJson(item);
+        } else {
+          if (typeof obj[nodeName].push == "undefined") {
+            var old = obj[nodeName];
+            obj[nodeName] = [];
+            obj[nodeName].push(old);
+          }
+          obj[nodeName].push(xmlToJson(item));
+        }
+      }
+    }
+    return obj;
+  }
+
+  const loadConntent = () => {
+    const contentID = props.getContentID;
+    console.log(props.getContentID);
+
+    fetch(api.link + contentID, api.response)
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const xlm = parser.parseFromString(data, "application/xml");
+        const jsonObject = xmlToJson(xlm);
+        return jsonObject;
+      })
+      .then((jsonObj) => {
+        console.log(jsonObj);
+        const _articals = jsonObj.feed.entry.map((entr) => {
+          const _artical = {
+            _id: entr.id["#text"],
+            title: entr.title["#text"],
+            link: entr.link["@attributes"].href,
+            author: entr.author.name["#text"],
+            view: "notFound",
+            updateAt: entr.published["#text"],
+            thumbnail:
+              entr["media:group"]["media:thumbnail"]["@attributes"].url,
+            discription: entr["media:group"]["media:description"]["#text"],
+          };
+          return _artical;
+        });
+        const contentObject = {
+          _id: props.getContentID,
+          author: jsonObj.feed.author.name["#text"],
+          articals: _articals,
+        };
+
+        setContent((prev) => contentObject);
+      })
+      .catch((err) => {
+        console.log("ERROR");
+        console.log(err);
+      });
+  };
+
+  useEffect(() => {
+    console.log(_content);
+    loadConntent();
+  }, [props.getContentID]);
+
   return (
-    <div className="content">
+    <div className="content" id={_content._id}>
       <div className="_header">
-        <h1>Artical Author</h1>
+        <h1>{_content.author}</h1>
         <div id="content-icon">
           <div id="deleteChannel">
             <svg
@@ -62,11 +158,11 @@ function Content() {
               version="1.1"
               xmlns="http://www.w3.org/2000/svg"
               style={{
-                "fill-rule": "evenodd",
-                "clip-rule": "evenodd",
-                "stroke-linecap": "round",
-                "stroke-linejoin": "round",
-                "stroke-miterlimit": 1.5,
+                fillRule: "evenodd",
+                clipRule: "evenodd",
+                strokeLinecap: "round",
+                strokeLinejoin: "round",
+                strokeMiterlimit: 1.5,
               }}
             >
               <g>
@@ -76,7 +172,7 @@ function Content() {
                     style={{
                       fill: "none",
                       stroke: "#7a413f",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }}
                   />
                 </g>
@@ -86,7 +182,7 @@ function Content() {
                     style={{
                       fill: "none",
                       stroke: "#7a413f",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }}
                   />
                 </g>
@@ -99,7 +195,7 @@ function Content() {
                     style={{
                       fill: "none",
                       stroke: "#7a413f",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }}
                   />
                 </g>
@@ -147,7 +243,7 @@ function Content() {
         </div>
       </div>
       <div className="_articals">
-        {testArticals.map((artical) => {
+        {_content.articals.map((artical) => {
           return <Artical key={artical._id} artical={artical} />;
         })}
       </div>

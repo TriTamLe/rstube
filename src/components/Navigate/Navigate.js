@@ -2,28 +2,13 @@ import AddButton from "./AddButton/AddButton";
 import Board from "./Board/Board";
 import "./Navigate.css";
 
-function Navigate() {
-  const boardTest = {
-    _id: "boardTest",
-    title: "Board Test hehe",
-    channels: [
-      {
-        _id: "test 1",
-        title: "channel test1",
-        channelID: "....",
-      },
-      {
-        _id: "test 2",
-        title: "channel test2",
-        channelID: "....",
-      },
-    ],
-  };
-
+function Navigate({ boards, reloadID }) {
   return (
     <div className="navigate">
       <div className="boardLayout">
-        <Board board={boardTest} />
+        {boards.map((board) => {
+          return <Board key={board._id} board={board} reloadID={reloadID} />;
+        })}
       </div>
       <div id="add">
         <AddButton />

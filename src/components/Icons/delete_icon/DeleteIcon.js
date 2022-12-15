@@ -32,11 +32,11 @@ function DeleteIcon(props) {
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
         style={{
-          "fill-rule": "evenodd",
-          "clip-rule": "evenodd",
-          "stroke-linecap": "round",
-          "stroke-linejoin": "round",
-          "stroke-miterlimit": 1.5,
+          fillRule: "evenodd",
+          clipRule: "evenodd",
+          strokeLinecap: "round",
+          strokeLinejoin: "round",
+          strokeMiterlimit: 1.5,
         }}
       >
         <g>
@@ -48,12 +48,12 @@ function DeleteIcon(props) {
                   ? {
                       fill: "none",
                       stroke: "#f0eadb",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }
                   : {
                       fill: "none",
                       stroke: "#454747",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }
               }
             />
@@ -66,12 +66,12 @@ function DeleteIcon(props) {
                   ? {
                       fill: "none",
                       stroke: "#f0eadb",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }
                   : {
                       fill: "none",
                       stroke: "#454747",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }
               }
             />
@@ -87,12 +87,12 @@ function DeleteIcon(props) {
                   ? {
                       fill: "none",
                       stroke: "#f0eadb",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }
                   : {
                       fill: "none",
                       stroke: "#454747",
-                      "stroke-width": "50px",
+                      strokeWidth: "50px",
                     }
               }
             />
