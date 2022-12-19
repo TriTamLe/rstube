@@ -4,3 +4,7 @@ export const api = {
     method: "GET",
   },
 };
+
+export const youtbeDataAPI = {
+  KEY: "AIzaSyBsSf8gY1TuHSJ0rTTgCWMyAd8kTDPDNbk",
+};

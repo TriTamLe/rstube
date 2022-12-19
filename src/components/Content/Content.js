@@ -7,7 +7,7 @@ import { testBoard } from "../../store";
 
 const testArticals = [
   {
-    _id: "testArID0",
+    channelId: "testArID0",
     title: "Artical Title",
     author: "Le Tri Tam",
     view: 39382,
@@ -18,7 +18,7 @@ const testArticals = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
-    _id: "testArID1",
+    channelId: "testArID1",
     title: "Artical Title",
     author: "Le Tri Tam",
     view: 39382,
@@ -29,7 +29,7 @@ const testArticals = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
-    _id: "testArID2",
+    channelId: "testArID2",
     title: "Artical Title",
     author: "Le Tri Tam",
     view: 39382,
@@ -40,7 +40,7 @@ const testArticals = [
       "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
   },
   {
-    _id: "testArID3",
+    channelId: "testArID3",
     title: "Artical Title",
     author: "Le Tri Tam",
     view: 39382,
@@ -54,8 +54,8 @@ const testArticals = [
 
 function Content(props) {
   const [_content, setContent] = useState({
-    _id: testBoard[0].channels[0]._id,
-    author: testBoard[0].channels[0].title,
+    channelId: "UCsT0YIqwnpJCM-mx7-gSA4Q",
+    author: "TEDx Talks",
     articals: [],
   });
 
@@ -98,9 +98,8 @@ function Content(props) {
     return obj;
   }
 
-  const loadConntent = () => {
+  const loadContent = () => {
     const contentID = props.getContentID;
-    console.log(props.getContentID);
 
     fetch(api.link + contentID, api.response)
       .then((response) => response.text())
@@ -111,10 +110,9 @@ function Content(props) {
         return jsonObject;
       })
       .then((jsonObj) => {
-        console.log(jsonObj);
         const _articals = jsonObj.feed.entry.map((entr) => {
           const _artical = {
-            _id: entr.id["#text"],
+            channelId: entr.id["#text"],
             title: entr.title["#text"],
             link: entr.link["@attributes"].href,
             author: entr.author.name["#text"],
@@ -127,7 +125,7 @@ function Content(props) {
           return _artical;
         });
         const contentObject = {
-          _id: props.getContentID,
+          channelId: props.getContentID,
           author: jsonObj.feed.author.name["#text"],
           articals: _articals,
         };
@@ -140,17 +138,24 @@ function Content(props) {
       });
   };
 
+  const deleteContent = (id) => props.deleteChannel(id);
+
   useEffect(() => {
     console.log(_content);
-    loadConntent();
+    loadContent();
   }, [props.getContentID]);
 
   return (
-    <div className="content" id={_content._id}>
+    <div className="content" id={_content.channelId}>
       <div className="_header">
         <h1>{_content.author}</h1>
         <div id="content-icon">
-          <div id="deleteChannel">
+          <div
+            id="deleteChannel"
+            onClick={() => {
+              deleteContent(_content.channelId);
+            }}
+          >
             <svg
               width="100%"
               height="100%"
@@ -202,7 +207,12 @@ function Content(props) {
               </g>
             </svg>
           </div>
-          <div id="reloadChannel">
+          <div
+            id="reloadChannel"
+            onClick={() => {
+              loadContent();
+            }}
+          >
             <svg
               width="100%"
               height="100%"
@@ -244,7 +254,7 @@ function Content(props) {
       </div>
       <div className="_articals">
         {_content.articals.map((artical) => {
-          return <Artical key={artical._id} artical={artical} />;
+          return <Artical key={artical.channelId} artical={artical} />;
         })}
       </div>
     </div>

@@ -91,10 +91,10 @@ function Board(props) {
             return (
               <div
                 className="channel"
-                id={channel._id}
-                key={channel._id}
+                id={channel.channelId}
+                key={channel.channelId}
                 onClick={() => {
-                  _reloadID(channel._id);
+                  _reloadID(channel.channelId);
                 }}
               >
                 <div className="channelIcon">

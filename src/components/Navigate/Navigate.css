@@ -13,6 +13,12 @@
 .navigate .boardLayout {
   padding: 20px;
 }
+.navigate .boardLayout #line {
+  margin-top: 10px;
+  width: 100%;
+  height: 2px;
+  background-color: var(--darkColor);
+}
 
 .navigate #add {
   position: absolute;

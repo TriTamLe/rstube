@@ -4,7 +4,7 @@ import Menu from "../Menu/Menu";
 import "./AddButton.css";
 import { useEffect, useState, useRef } from "react";
 
-function AddButton() {
+function AddButton(props) {
   const [isOpen, setIsOpen] = useState(false);
   const addBtn = useRef();
 

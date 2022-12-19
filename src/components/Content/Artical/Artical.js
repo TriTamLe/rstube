@@ -7,7 +7,7 @@ function Artical(props) {
     const h = date.getHours();
     const m = date.getMinutes();
     const d = date.getDate();
-    const mth = date.getMonth();
+    const mth = date.getMonth() === 12 ? 1 : date.getMonth() + 1;
     const y = date.getFullYear();
 
     const update = h + ":" + m + " on " + d + "/" + mth + "/" + y;
