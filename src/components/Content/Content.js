@@ -110,13 +110,17 @@ function Content(props) {
         return jsonObject;
       })
       .then((jsonObj) => {
+        console.log(jsonObj);
         const _articals = jsonObj.feed.entry.map((entr) => {
           const _artical = {
             channelId: entr.id["#text"],
             title: entr.title["#text"],
             link: entr.link["@attributes"].href,
             author: entr.author.name["#text"],
-            view: "notFound",
+            views:
+              entr["media:group"]["media:community"]["media:statistics"][
+                "@attributes"
+              ]["views"],
             updateAt: entr.published["#text"],
             thumbnail:
               entr["media:group"]["media:thumbnail"]["@attributes"].url,
@@ -143,7 +147,7 @@ function Content(props) {
   useEffect(() => {
     console.log(_content);
     loadContent();
-  }, [props.getContentID]);
+  }, []);
 
   return (
     <div className="content" id={_content.channelId}>

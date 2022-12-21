@@ -35,7 +35,7 @@ function Artical(props) {
               {"by " +
                 artical.author +
                 "  /  views: " +
-                artical.view +
+                artical.views +
                 "  /  uploaded at " +
                 uploadedTime(artical.updateAt)}
             </p>

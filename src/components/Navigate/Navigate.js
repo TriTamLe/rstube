@@ -2,7 +2,7 @@ import AddButton from "./AddButton/AddButton";
 import Board from "./Board/Board";
 import "./Navigate.css";
 
-function Navigate({ boards, reloadID, all }) {
+function Navigate({ reloadID, all }) {
   const _all =
     all === []
       ? [
