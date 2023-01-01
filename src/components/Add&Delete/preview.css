@@ -31,7 +31,7 @@
   text-align: justify;
 }
 
-.previewChannel .followBtn #follow {
+.previewChannel .followBtn.false {
   position: absolute;
   right: 20px;
   top: 10px;
@@ -44,13 +44,13 @@
   cursor: pointer;
   border-radius: 5px;
   font-size: 20px;
+  text-align: center;
 }
-.previewChannel .followBtn #follow:hover {
+.previewChannel .followBtn.false:hover {
   background-color: var(--mainColor);
   color: var(--bgColor);
 }
-
-.previewChannel .followBtn #followed {
+.previewChannel .followBtn.true {
   position: absolute;
   right: 20px;
   top: 10px;
@@ -60,7 +60,7 @@
   color: var(--bgColor);
   background-color: var(--darkColor);
   border: 2px solid var(--darkColor);
-
   border-radius: 5px;
   font-size: 20px;
+  text-align: center;
 }

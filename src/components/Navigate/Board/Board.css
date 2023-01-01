@@ -74,6 +74,7 @@
 }
 
 .board.opened .channelList {
+  width: 100%;
   visibility: visible;
   opacity: 1;
   margin-top: 0px;
@@ -81,6 +82,7 @@
 }
 
 .channelList .channel {
+  width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
@@ -94,5 +96,13 @@
 }
 
 .channelList .channel .channelTitle {
+  padding: 3px;
+  width: fit-content;
   font-size: 20px;
+}
+
+.channelList .channel:hover .channelTitle {
+  border-radius: 5px;
+  background-color: var(--mainColor);
+  color: var(--bgColor);
 }

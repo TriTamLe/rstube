@@ -3,59 +3,11 @@ import { api } from "../../Api";
 import Artical from "./Artical/Artical";
 import { useState } from "react";
 import "./Content.css";
-import { testBoard } from "../../store";
-
-const testArticals = [
-  {
-    channelId: "testArID0",
-    title: "Artical Title",
-    author: "Le Tri Tam",
-    view: 39382,
-    updateAt: "2022-12-14T07:01:55+0000",
-    thumbnail:
-      "https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png",
-    discription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  },
-  {
-    channelId: "testArID1",
-    title: "Artical Title",
-    author: "Le Tri Tam",
-    view: 39382,
-    updateAt: "2022-12-14T07:01:55+0000",
-    thumbnail:
-      "https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png",
-    discription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  },
-  {
-    channelId: "testArID2",
-    title: "Artical Title",
-    author: "Le Tri Tam",
-    view: 39382,
-    updateAt: "2022-12-14T07:01:55+0000",
-    thumbnail:
-      "https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png",
-    discription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  },
-  {
-    channelId: "testArID3",
-    title: "Artical Title",
-    author: "Le Tri Tam",
-    view: 39382,
-    updateAt: "2022-12-14T07:01:55+0000",
-    thumbnail:
-      "https://png.pngtree.com/png-vector/20220817/ourmid/pngtree-cartoon-man-avatar-vector-ilustration-png-image_6111064.png",
-    discription:
-      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-  },
-];
 
 function Content(props) {
   const [_content, setContent] = useState({
     channelId: "UCsT0YIqwnpJCM-mx7-gSA4Q",
-    author: "TEDx Talks",
+    author: "Vui lòng chọn kênh",
     articals: [],
   });
 
@@ -100,10 +52,11 @@ function Content(props) {
 
   const loadContent = () => {
     const contentID = props.getContentID;
-
+    console.log("contentID:", contentID);
     fetch(api.link + contentID, api.response)
       .then((response) => response.text())
       .then((data) => {
+        console.log("data: ", data);
         const parser = new DOMParser();
         const xlm = parser.parseFromString(data, "application/xml");
         const jsonObject = xmlToJson(xlm);
@@ -147,7 +100,7 @@ function Content(props) {
   useEffect(() => {
     console.log(_content);
     loadContent();
-  }, []);
+  }, [props.getContentID]);
 
   return (
     <div className="content" id={_content.channelId}>

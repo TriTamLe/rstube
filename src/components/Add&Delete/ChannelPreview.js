@@ -3,24 +3,11 @@ import "./preview.css";
 import { useEffect, useState } from "react";
 
 function ChannelPreview({ channel, callbackExit, addCallback, allchannels }) {
-  const [isFollowed, setIsFollowed] = useState(false);
-
-  const checkFollowed = (id) => {
-    console.log(allchannels);
-    const check = allchannels.some((_channel) => _channel.channelId === id);
-    console.log("isFl " + id + "" + check);
-    return check;
-  };
+  const [isFollowed, setIsFollowed] = useState(channel.isFollowed);
 
   const followNew = () => {
-    setIsFollowed(true);
     addCallback(channel.channelId, channel.title);
-    callbackExit();
   };
-
-  useEffect(() => {
-    setIsFollowed(checkFollowed(channel.channelId));
-  }, []);
 
   return (
     <div className="previewChannel" id={channel.channelId}>
@@ -31,14 +18,8 @@ function ChannelPreview({ channel, callbackExit, addCallback, allchannels }) {
         }}
       ></div>
       <div className="title">{channel.title}</div>
-      <div className="followBtn">
-        {!isFollowed ? (
-          <button id="follow" onClick={followNew}>
-            Follow
-          </button>
-        ) : (
-          <button id="followed">Followed</button>
-        )}
+      <div className={"followBtn " + isFollowed} onClick={followNew}>
+        {isFollowed ? "Followed" : "Follow"}
       </div>
     </div>
   );

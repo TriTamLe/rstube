@@ -1,30 +1,32 @@
+import { useEffect, useState } from "react";
 import AddButton from "./AddButton/AddButton";
 import Board from "./Board/Board";
 import "./Navigate.css";
 
-function Navigate({ reloadID, all }) {
-  const _all =
-    all === []
-      ? [
-          {
-            channelId: "_",
-            title: "Khong co kenh nao",
-          },
-        ]
-      : all;
+function Navigate({ reloadID, all, exitAdding }) {
+  const [_all, setAll] = useState([
+    {
+      channelId: "_",
+      title: "Khong co kenh nao",
+    },
+  ]);
+
+  useEffect(() => {
+    if (all.length !== 0) {
+      setAll(all);
+    }
+  }, [all.length]);
+
   const boardAll = {
-    channelId: "#allchannels",
+    boardId: "#allchannels",
     title: "Tất cả các kênh",
     channels: _all,
   };
+
   return (
     <div className="navigate">
       <div className="boardLayout">
-        {/* {boards.map((board) => {
-          return <Board key={board.channelId} board={board} reloadID={reloadID} />;
-        })}
-        <div id="line"></div> */}
-        <Board board={boardAll} reloadID={reloadID} />
+        <Board board={boardAll} reloadID={reloadID} exitAdding={exitAdding} />
       </div>
       <div id="add">
         <AddButton />

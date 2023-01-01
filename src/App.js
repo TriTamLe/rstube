@@ -1,39 +1,33 @@
 import "./App.css";
 import Navigate from "./components/Navigate/Navigate";
 import Content from "./components/Content/Content";
-import Add from "./components/Add&Delete/Add.";
+import Add from "./components/Add&Delete/Add.js";
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
 
 //Tạo socket kết nối đến ip của server
-const socket = io.connect("http://192.168.183.133:3001/");
+const socket = io.connect("http://localhost:3001/");
 
 //component App
 function App() {
   //Tạo mảng các kênh theo dõi. Tạo giá trị mặc định
-  const [allchannels, setAllChannel] = useState([
-    {
-      channelId: "#default",
-      title: "#default",
-    },
-  ]);
+  const defaultFirstChannel = {
+    channelId: "#default",
+    title: "....",
+  };
+  const [allchannels, setAllChannel] = useState([defaultFirstChannel]);
 
   //Hàm lấy danh sách các kênh theo dõi từ server
   const getFromServer = (bool) => {
     socket.emit("loadPage", { message: "loaded" });
     socket.on("store", (data) => {
       setAllChannel((prev) => {
-        console.log(data);
+        console.log("newdata", data);
+        if (bool) setContentID(data[0].channelId);
         return data;
       });
-      if (bool) window.location.reload(true);
     });
   };
-
-  //Mỗi khi component reload sẽ lấy lại thông tin từ server
-  useEffect(() => {
-    getFromServer(false);
-  }, []);
 
   useEffect(() => {
     //Tạo sự kiện click cho nút thêm kênh
@@ -51,13 +45,16 @@ function App() {
 
   //Biến lưu ID của kênh muốn xem nội dung
   //Mặc định biến này là kênh đầu tiên của danh sách
-  const [contentID, setContentID] = useState(allchannels[0].channelId);
+  const [contentID, setContentID] = useState(
+    allchannels.length === 0 ? "#default" : allchannels[0].channelId
+  );
   //Biến xác định xem người dùng có đang thêm kênh hay không
   //Mặc định là không
   const [isAdding, setIsAdding] = useState(false);
 
   //Hàm set lại id của kênh cần xem nội dung
   const reloadID = (id) => {
+    console.log("reload");
     setContentID(id);
   };
 
@@ -71,7 +68,6 @@ function App() {
     //Reload lại trang để lấy lại danh sách các kênh
     socket.on("delete_done", (mess) => {
       console.log(mess);
-      setContentID(allchannels[0].channelId);
       getFromServer(true);
     });
   };
@@ -90,7 +86,7 @@ function App() {
     //Reload lại trang để lấy lại danh sách kênh
     socket.on("add_done", (data) => {
       console.log(data);
-      getFromServer(true);
+      getFromServer(false);
     });
   };
 
@@ -103,7 +99,10 @@ function App() {
   const setIsAddingCallback = (bool) => {
     setIsAdding(bool);
   };
-
+  //Mỗi khi component reload sẽ lấy lại thông tin từ server
+  useEffect(() => {
+    getFromServer(false);
+  }, []);
   //Mã HTML trả về
   return (
     <div className="App">
@@ -114,10 +113,14 @@ function App() {
         </div>
 
         <div className="boards">
-          <Navigate all={allchannels} reloadID={reloadID} />
+          <Navigate
+            all={allchannels}
+            reloadID={reloadID}
+            exitAdding={() => setIsAddingCallback(false)}
+          />
         </div>
 
-        {allchannels[0].channelId !== "#default" && (
+        {allchannels[0] !== defaultFirstChannel && (
           <div className="articles">
             {!isAdding ? (
               <Content

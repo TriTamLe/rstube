@@ -7,6 +7,13 @@ function Add({ callback, addCallback, allchannels }) {
   const [_preview, setPreview] = useState([]);
   const limit = 7;
 
+  const checkFollowed = (id) => {
+    //console.log(allchannels);
+    const check = allchannels.some((_channel) => _channel.channelId === id);
+    //console.log("isFl " + id + " " + check);
+    return check;
+  };
+
   const fetchingData = (e) => {
     GetListByKeyword(e.target.value, false, limit, [{ type: "channel" }])
       .then((res) => {
@@ -16,6 +23,7 @@ function Add({ callback, addCallback, allchannels }) {
             channelId: item.id,
             thumbnail: item.thumbnail.thumbnails[1].url,
             title: item.title,
+            isFollowed: checkFollowed(item.id),
           };
           return channel;
         });

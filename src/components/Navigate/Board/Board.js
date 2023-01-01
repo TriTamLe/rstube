@@ -25,7 +25,7 @@ function Board(props) {
   }, []);
 
   return (
-    <div className={"board" + (isOpen ? " opened" : "")} id={_board.id}>
+    <div className={"board" + (isOpen ? " opened" : "")} id={_board.boardId}>
       <div className={"rightClick " + (isRightClick ? "true" : "false")}>
         <div className="boardTitle">
           <div
@@ -94,6 +94,7 @@ function Board(props) {
                 id={channel.channelId}
                 key={channel.channelId}
                 onClick={() => {
+                  props.exitAdding();
                   _reloadID(channel.channelId);
                 }}
               >
