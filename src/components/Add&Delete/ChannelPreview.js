@@ -1,11 +1,14 @@
 import "./preview.css";
 
 import { useEffect, useState } from "react";
+import { click } from "@testing-library/user-event/dist/click";
 
 function ChannelPreview({ channel, callbackExit, addCallback, allchannels }) {
-  const [isFollowed, setIsFollowed] = useState(channel.isFollowed);
+  const isFollowed = channel.isFollowed;
+  const previewID = "followBtn" + channel.channelId;
 
   const followNew = () => {
+    document.getElementById(previewID).classList.toggle("clicked");
     addCallback(channel.channelId, channel.title);
   };
 
@@ -18,8 +21,14 @@ function ChannelPreview({ channel, callbackExit, addCallback, allchannels }) {
         }}
       ></div>
       <div className="title">{channel.title}</div>
-      <div className={"followBtn " + isFollowed} onClick={followNew}>
-        {isFollowed ? "Followed" : "Follow"}
+      <div
+        className={isFollowed ? "followBtn clicked" : "followBtn"}
+        id={previewID}
+      >
+        <button className="following">Following</button>
+        <button className="follow" onClick={followNew}>
+          Follow
+        </button>
       </div>
     </div>
   );

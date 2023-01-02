@@ -31,11 +31,23 @@
   text-align: justify;
 }
 
-.previewChannel .followBtn.false {
+.previewChannel .followBtn {
   position: absolute;
   right: 20px;
   top: 10px;
-  width: 100px;
+  width: 120px;
+}
+
+.follow,
+.following {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.follow {
+  width: 100%;
   height: fit-content;
   font-family: beVNProSeBold;
   color: var(--darkColor);
@@ -46,15 +58,16 @@
   font-size: 20px;
   text-align: center;
 }
-.previewChannel .followBtn.false:hover {
+
+.follow:hover {
   background-color: var(--mainColor);
   color: var(--bgColor);
 }
-.previewChannel .followBtn.true {
+
+.following {
   position: absolute;
   right: 20px;
-  top: 10px;
-  width: 100px;
+  width: 100%;
   height: fit-content;
   font-family: beVNProSeBold;
   color: var(--bgColor);
@@ -63,4 +76,19 @@
   border-radius: 5px;
   font-size: 20px;
   text-align: center;
+}
+
+.previewChannel .followBtn .following {
+  visibility: hidden;
+}
+
+.previewChannel .followBtn .follow {
+  visibility: visible;
+}
+
+.previewChannel .followBtn.clicked .following {
+  visibility: visible;
+}
+.previewChannel .followBtn.clicked .follow {
+  visibility: hidden;
 }

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./Add.css";
 import ChannelPreview from "./ChannelPreview";
 import { GetListByKeyword } from "youtube-search-api";
@@ -42,19 +42,22 @@ function Add({ callback, addCallback, allchannels }) {
 
   return (
     <div className="adding">
-      <div className="exit">
-        <div
-          className="X"
-          onClick={() => {
-            exitAdding(1);
-          }}
-        >
-          X
+      <div className="header">
+        <div className="searchChannel">
+          <input type="text" onChange={fetchingData} id="inputChannel" />
+        </div>
+        <div className="exit">
+          <div
+            className="X"
+            onClick={() => {
+              exitAdding(1);
+            }}
+          >
+            X
+          </div>
         </div>
       </div>
-      <div className="searchChannel">
-        <input type="text" onChange={fetchingData} id="inputChannel" />
-      </div>
+
       <div className="preview">
         {_preview.map((channel) => {
           return (

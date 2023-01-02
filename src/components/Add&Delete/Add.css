@@ -6,46 +6,52 @@
 }
 
 .adding {
+  position: relative;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  align-items: center;
+  justify-content: space-between;
 }
 
-.adding .exit {
+.adding .header {
   position: relative;
   width: 100%;
-  height: 5%;
-  text-align: right;
-  margin-bottom: 20px;
+  height: 10%;
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  z-index: 1;
+  justify-content: space-between;
+  background-color: var(--bgColor);
 }
-.adding .exit .X {
-  position: absolute;
-  right: 30px;
+.adding .header .exit {
+  width: 20%;
+}
+.adding .header .exit .X {
   width: fit-content;
   font-family: beVnProRegu;
-  margin-top: 10px;
-  font-size: 30px;
+  margin: 0 auto;
+  font-size: 40px;
   color: var(--mainColor);
   cursor: pointer;
   padding: 5px;
   border-radius: 5px;
 }
-.adding .exit .X:hover {
+.adding .header .exit .X:hover {
   background-color: var(--popColor);
 }
 
-.adding .searchChannel {
-  width: 100%;
-  height: 10%;
+.adding .header .searchChannel {
+  width: 95%;
+  height: 80%;
 }
 input[type="text"] {
-  width: 95%;
+  width: 100%;
   height: 100%;
   font-family: beVNProRegu;
   font-size: 40px;
-  padding: 5px;
   border: 2px solid var(--darkColor);
   border-radius: 5px;
   background-color: var(--bgColor);
