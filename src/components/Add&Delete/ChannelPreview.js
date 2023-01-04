@@ -1,9 +1,7 @@
+import { useEffect, useState } from "react";
 import "./preview.css";
 
-import { useEffect, useState } from "react";
-import { click } from "@testing-library/user-event/dist/click";
-
-function ChannelPreview({ channel, callbackExit, addCallback, allchannels }) {
+function ChannelPreview({ channel, addCallback, id }) {
   const isFollowed = channel.isFollowed;
   const previewID = "followBtn" + channel.channelId;
 
@@ -13,11 +11,13 @@ function ChannelPreview({ channel, callbackExit, addCallback, allchannels }) {
   };
 
   return (
-    <div className="previewChannel" id={channel.channelId}>
+    <div className="previewChannel" id={id}>
       <div
         className="thumbnail"
         style={{
           backgroundImage: `url(${channel.thumbnail})`,
+          backgroundSize: "contain",
+          backgroundRepeat: "no-repeat",
         }}
       ></div>
       <div className="title">{channel.title}</div>

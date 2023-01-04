@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Add.css";
 import ChannelPreview from "./ChannelPreview";
+import logo from "../../RSTubeLogo.png";
 import { GetListByKeyword } from "youtube-search-api";
 
 function Add({ callback, addCallback, allchannels }) {
@@ -8,9 +9,8 @@ function Add({ callback, addCallback, allchannels }) {
   const limit = 7;
 
   const checkFollowed = (id) => {
-    //console.log(allchannels);
     const check = allchannels.some((_channel) => _channel.channelId === id);
-    //console.log("isFl " + id + " " + check);
+
     return check;
   };
 
@@ -18,17 +18,47 @@ function Add({ callback, addCallback, allchannels }) {
     GetListByKeyword(e.target.value, false, limit, [{ type: "channel" }])
       .then((res) => {
         console.log(res);
-        const channels = res.items.map((item) => {
-          const channel = {
-            channelId: item.id,
-            thumbnail: item.thumbnail.thumbnails[1].url,
-            title: item.title,
-            isFollowed: checkFollowed(item.id),
-          };
-          return channel;
+        const promises = res.items.map((item) => {
+          return new Promise((resolve, reject) => {
+            const channelThumbnail = item.thumbnail.thumbnails[1].url;
+
+            const option = {
+              method: "GET",
+              mode: "cors",
+              "Content-Type": "aplication/json",
+            };
+            fetch(channelThumbnail, option)
+              .then((response) => {
+                const channel = {
+                  channelId: item.id,
+                  title: item.title,
+                  thumbnail: logo,
+                  isFollowed: checkFollowed(item.id),
+                };
+                if (response.ok) {
+                  channel.thumbnail = channelThumbnail;
+                }
+                resolve(channel);
+              })
+              .catch((err) => {
+                console.log(err);
+                reject();
+              });
+          });
         });
 
-        setPreview((prev) => channels);
+        Promise.all(promises).then((channels) => {
+          setPreview((prev) => channels);
+        });
+      })
+      .then(() => {
+        const firstPre = document.getElementById("preview_0");
+        if (firstPre !== null)
+          firstPre.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "nearest",
+          });
       })
       .catch((err) => {
         console.log("ERROR!");
@@ -40,11 +70,20 @@ function Add({ callback, addCallback, allchannels }) {
     callback(false);
   };
 
+  useEffect(() => {
+    document.getElementById("inputChannel").focus();
+  }, []);
+
   return (
     <div className="adding">
       <div className="header">
         <div className="searchChannel">
-          <input type="text" onChange={fetchingData} id="inputChannel" />
+          <input
+            type="text"
+            onChange={fetchingData}
+            id="inputChannel"
+            autoComplete="off"
+          />
         </div>
         <div className="exit">
           <div
@@ -59,13 +98,13 @@ function Add({ callback, addCallback, allchannels }) {
       </div>
 
       <div className="preview">
-        {_preview.map((channel) => {
+        {_preview.map((channel, index) => {
           return (
             <ChannelPreview
               channel={channel}
-              callbackExit={exitAdding}
               addCallback={addCallback}
-              allchannels={allchannels}
+              key={"preview_" + index}
+              id={"preview_" + index}
             />
           );
         })}

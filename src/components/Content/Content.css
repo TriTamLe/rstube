@@ -17,14 +17,33 @@
   height: 10%;
   border: 1.5px solid var(--darkColor);
   display: flex;
+  flex-direction: row;
   align-items: center;
   justify-content: space-between;
 }
 
 .content ._header h1 {
   font-family: beVNProBold;
-  font-size: 35px;
+  font-size: 30px;
+}
+
+.content ._header .title h2 {
+  position: relative;
+  font-family: beVNProThin;
+  font-size: 0px;
+  visibility: hidden;
+  transition: 0.3s;
+}
+
+.content ._header .title {
+  display: flex;
+  flex-direction: column;
   margin-left: 20px;
+}
+.content ._header .title:hover h2 {
+  transition: 0.3s;
+  visibility: visible;
+  font-size: 15px;
 }
 
 .content ._header #content-icon {

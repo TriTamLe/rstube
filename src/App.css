@@ -53,6 +53,7 @@
   --mainColor: #7a413f;
   --popColor: #d8bd77;
   --darkColor: #454747;
+  --logo: url("../public/RSTubeLogo.png");
 }
 
 .layOut {
@@ -75,7 +76,7 @@
 }
 
 .layOut .header #logo {
-  background-image: url("../public/RSTubeLogo.png");
+  background-image: var(--logo);
   width: 50px;
   height: 50px;
   background-size: contain;

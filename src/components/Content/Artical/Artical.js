@@ -14,7 +14,7 @@ function Artical(props) {
     return update;
   };
   return (
-    <a href={artical.link}>
+    <a href={artical.link} id={props.id}>
       <div className="_artical">
         <div className="thumbnail">
           <img
