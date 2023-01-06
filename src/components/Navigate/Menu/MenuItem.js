@@ -1,4 +1,3 @@
-import { useEffect } from "react";
 import AddChannelIcon from "../../Icons/add_icon/AddChannelICon";
 import AddNewBoardIcon from "../../Icons/add_icon/AddNewBoardIcon";
 import DeleteIcon from "../../Icons/delete_icon/DeleteIcon";
@@ -8,14 +7,14 @@ function MenuItem(props) {
   const icon = props.icon;
 
   return (
-    <div className="item" id={props.channelId}>
+    <div className="item" id={props.itemId}>
       <div className="itemIcon">
         {icon === "delete" ? (
-          <DeleteIcon prID={props.channelId} />
+          <DeleteIcon prID={props.itemId} />
         ) : icon === "add_channel" ? (
-          <AddChannelIcon prID={props.channelId} />
+          <AddChannelIcon prID={props.itemId} />
         ) : icon === "add_board" ? (
-          <AddNewBoardIcon prID={props.channelId} />
+          <AddNewBoardIcon prID={props.itemId} />
         ) : (
           ""
         )}

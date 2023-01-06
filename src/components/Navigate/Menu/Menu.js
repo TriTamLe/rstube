@@ -27,16 +27,15 @@ const addMenu = [
   },
 ];
 
-function Menu({ type, addingCallback }) {
+function Menu({ type }) {
   const theArray = type === "0" ? addMenu : boardMenu;
-
   return (
     <div className="menu">
       {theArray.map((item) => {
         return (
           <MenuItem
             key={item.id}
-            channelId={item.id}
+            itemId={item.id}
             icon={item.icon}
             title={item.title}
           />

@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="rstube">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/rstube.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
