@@ -1,0 +1,1 @@
+http://www.googleapis.com/youtube/v3/channels?part=snippet&id+CHANNEL_ID&fields=items%2Fsnippet%2Fthumbnails&key={YOUR_API_KEY}

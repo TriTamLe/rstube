@@ -1,0 +1,108 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import url('../../App.css');
+
+.board {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+}
+
+.board .boardTitle {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 15px;
+}
+
+._menu {
+  position: absolute;
+  margin-left: 200px;
+  z-index: 100;
+}
+
+.rightClick.false ._menu {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s;
+  margin-top: -20px;
+}
+.rightClick.true ._menu {
+  position: absolute;
+  visibility: visible;
+  opacity: 1;
+  transition: 0.3s;
+  margin-top: 0px;
+}
+
+.board .boardIcon {
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.board.opened .boardIcon {
+  transform: rotate(90deg);
+  transition: 0.3s;
+}
+
+.boardTitle .title {
+  color: var(--darkColor);
+  font-family: beVNProSeBold;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.board .channelList {
+  visibility: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-left: 30px;
+  margin-top: -20px;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.board.opened .channelList {
+  width: 100%;
+  visibility: visible;
+  opacity: 1;
+  margin-top: 0px;
+  transition: 0.3s;
+}
+
+.channelList .channel {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+  cursor: pointer;
+}
+
+.channelList .channel .channelIcon {
+  width: 15px;
+  height: 15px;
+}
+
+.channelList .channel .channelTitle {
+  padding: 3px;
+  width: fit-content;
+  font-size: 20px;
+}
+
+.channelList .channel:hover .channelTitle {
+  border-radius: 5px;
+  background-color: var(--mainColor);
+  color: var(--bgColor);
+}

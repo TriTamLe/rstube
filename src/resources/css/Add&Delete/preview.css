@@ -1,0 +1,94 @@
+@import url('../App.css');
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.previewChannel {
+  position: relative;
+  width: 800px;
+  height: fit-content;
+  border: 3px dashed var(--darkColor);
+  display: flex;
+  flex-direction: row;
+}
+
+.previewChannel .thumbnail {
+  width: 120px;
+  height: 120px;
+  border: 2px solid var(--darkColor);
+  margin: 10px;
+  background-size: cover;
+  background-position: center;
+}
+
+.previewChannel .title {
+  font-family: beVNProBold;
+  font-size: 40px;
+  width: 450px;
+  height: 150px;
+  padding: 10px;
+  text-align: justify;
+}
+
+.previewChannel .followBtn {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  width: 120px;
+}
+
+.follow,
+.following {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.follow {
+  width: 100%;
+  height: fit-content;
+  font-family: beVNProSeBold;
+  color: var(--darkColor);
+  background-color: #39376300;
+  border: 2px solid var(--darkColor);
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.follow:hover {
+  background-color: var(--mainColor);
+  color: var(--bgColor);
+}
+
+.following {
+  position: absolute;
+  right: 20px;
+  width: 100%;
+  height: fit-content;
+  font-family: beVNProSeBold;
+  color: var(--bgColor);
+  background-color: var(--darkColor);
+  border: 2px solid var(--darkColor);
+  border-radius: 5px;
+  font-size: 20px;
+  text-align: center;
+}
+
+.previewChannel .followBtn .following {
+  visibility: hidden;
+}
+
+.previewChannel .followBtn .follow {
+  visibility: visible;
+}
+
+.previewChannel .followBtn.clicked .following {
+  visibility: visible;
+}
+.previewChannel .followBtn.clicked .follow {
+  visibility: hidden;
+}

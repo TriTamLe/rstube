@@ -1,0 +1,110 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: 'beVNProRegu';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'beVNProBold';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'beVNProSeBold';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-SemiBold.ttf');
+}
+
+@font-face {
+  font-family: 'beVNProThin';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-Thin.ttf');
+}
+@font-face {
+  font-family: 'beVNProLight';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-Light.ttf');
+}
+@font-face {
+  font-family: 'beVNProItal';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-Italic.ttf');
+}
+@font-face {
+  font-family: 'beVNProLigItal';
+  font-style: normal;
+  font-weight: 0;
+  src: url('../fonts/Be_Vietnam_Pro/BeVietnamPro-LightItalic.ttf');
+}
+
+:root {
+  --bgColor: #f0eadb;
+  --mainColor: #7a413f;
+  --popColor: #d8bd77;
+  --darkColor: #454747;
+  --logo: url('../../RSTubeLogo.png');
+}
+
+.layOut {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background-color: var(--bgColor);
+}
+
+.layOut .header {
+  position: absolute;
+  width: 100%;
+  height: 70px;
+  top: 0;
+  border: 1px solid var(--darkColor);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.layOut .header #logo {
+  background-image: var(--logo);
+  width: 50px;
+  height: 50px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-left: 30px;
+  margin-right: 10px;
+}
+
+.layOut .header #webName {
+  margin-top: -10px;
+  font-size: 30px;
+  font-family: beVNProBold;
+  color: var(--darkColor);
+}
+
+.layOut .boards,
+.articles {
+  position: fixed;
+  top: 70px;
+  bottom: 0;
+  border: 1px solid var(--darkColor);
+}
+
+.boards {
+  width: 30%;
+  left: 0;
+}
+.articles {
+  width: 70%;
+  right: 0;
+}
