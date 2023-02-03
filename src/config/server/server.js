@@ -1,36 +1,58 @@
-import io from 'socket.io-client';
-
-const PORT = process.env.port || 3001;
-const socket = io.connect(`http://localhost:${PORT}/`);
+import { serverAPIs } from './Api';
 
 class Server {
   getFromServer(bool, setAllChannel, setContentID) {
-    socket.emit('loadPage', { message: 'loaded' });
-    socket.on('store', data => {
-      setAllChannel(prev => {
-        if (bool) setContentID(data[0].channelId);
-        return data;
+    const inputOptions = {
+      method: 'GET',
+      headers: serverAPIs.headers,
+    };
+    fetch(serverAPIs.server + 'channels/load', inputOptions)
+      .then(rs => rs.json())
+      .then(channels => {
+        setAllChannel(prev => {
+          if (bool) setContentID(channels[0].channelId);
+          console.log(channels);
+          return channels;
+        });
       });
-    });
   }
   addChannel(id, title, setAllChannel, setContentID) {
-    const newChannel = {
-      channelId: id,
-      title: title,
+    const inputOptions = {
+      method: 'POST',
+      headers: serverAPIs.postheader,
+      body: JSON.stringify({
+        channelId: id,
+        title: title,
+      }),
     };
-    socket.emit('add_channel', newChannel);
-    socket.on('add_done', data => {
-      this.getFromServer(false, setAllChannel, setContentID);
-    });
+
+    fetch(serverAPIs.server + 'channels/add', inputOptions)
+      .then(res => res.json())
+      .then(result => {
+        if (result.added === 'done') {
+          this.getFromServer(false, setAllChannel, setContentID);
+          return;
+        }
+        console.log('error while adding!');
+      })
+      .catch(err => console.log(err));
   }
   deleteChannel(id, setAllChannel, setContentID) {
-    //Emit sự kiện xóa kênh đến server
-    socket.emit('delete_channel', id);
-    //Nhận lại sự kiện đã xóa từ server
-    socket.on('delete_done', mess => {
-      console.log(mess);
-      this.getFromServer(true, setAllChannel, setContentID);
-    });
+    const inputOptions = {
+      method: 'DELETE',
+      headers: serverAPIs.postheader,
+    };
+
+    fetch(serverAPIs.server + `channels/${id}`, inputOptions)
+      .then(rs => rs.json())
+      .then(rs => {
+        if (rs.deleted === 'done') {
+          console.log('deleted done');
+          this.getFromServer(true, setAllChannel, setContentID);
+          return;
+        }
+        console.log('error while deleting');
+      });
   }
 }
 

@@ -63,7 +63,7 @@ function Board(props) {
               <div
                 className='channel'
                 id={channel.channelId}
-                key={channel.channelId}
+                key={channel._id}
                 onClick={() => {
                   props.exitAdding();
                   _reloadID(channel.channelId);

@@ -13,10 +13,11 @@ function Add({ openCallback, addCallback, allchannels }) {
     return check;
   };
 
-  const fetchingData = e => {
-    GetListByKeyword(e.target.value, false, limit, [{ type: 'channel' }])
+  const fetchingData = text => {
+    GetListByKeyword(text, false, limit, [{ type: 'channel' }])
       .then(res => {
         console.log(res);
+        console.log('fetching promises....');
         const promises = res.items.map(item => {
           return new Promise((resolve, reject) => {
             const channelThumbnail = item.thumbnail.thumbnails[1].url;
@@ -45,9 +46,18 @@ function Add({ openCallback, addCallback, allchannels }) {
           });
         });
 
-        Promise.all(promises).then(channels => {
-          setPreview(prev => channels);
-        });
+        console.log('fetching promise dot all....');
+
+        Promise.all(promises)
+          .then(channels => {
+            setPreview(prev => channels);
+          })
+          .then(() => {
+            console.log('fetching done');
+          })
+          .catch(err => {
+            console.log("can't fetch", err);
+          });
       })
       .then(() => {
         const firstPre = document.getElementById('preview_0');
@@ -69,7 +79,15 @@ function Add({ openCallback, addCallback, allchannels }) {
   };
 
   useEffect(() => {
-    document.getElementById('inputChannel').focus();
+    const inputChannel = document.getElementById('inputChannel');
+    inputChannel.focus();
+    inputChannel.addEventListener('keydown', e => {
+      if (e.keyCode === 13) {
+        e.preventDefault();
+        fetchingData(e.target.value);
+        inputChannel.blur();
+      }
+    });
   }, []);
 
   return (
@@ -78,9 +96,11 @@ function Add({ openCallback, addCallback, allchannels }) {
         <div className='searchChannel'>
           <input
             type='text'
-            onChange={fetchingData}
             id='inputChannel'
             autoComplete='off'
+            onFocus={() => {
+              fetchingData('');
+            }}
           />
         </div>
         <div className='exit'>

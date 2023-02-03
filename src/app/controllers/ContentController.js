@@ -4,6 +4,7 @@ import { api } from '../../config/server/Api';
 class ContentController {
   loadContent = (props, setContent) => {
     const contentID = props.getContentID;
+    console.log('channelId', contentID);
     fetch(api.link + contentID, api.response)
       .then(response => response.text())
       .then(data => {
