@@ -1,9 +1,9 @@
-import '../css/App.css';
+import '../css/Home.css';
 import Navigate from './Navigate/Navigate';
 import Content from './Content/Content';
 import Add from './Add&Delete/Add';
 import { useEffect, useState } from 'react';
-import Server from '../../config/server/server';
+import ChannelServer from '../../config/server/Channelserver';
 
 function Home() {
   const defaultFirstChannel = {
@@ -23,11 +23,11 @@ function Home() {
   };
   //Hàm xóa kênh
   const deleteChannel = id => {
-    return Server.deleteChannel(id, setAllChannel, setContentID);
+    return ChannelServer.deleteChannel(id, setAllChannel, setContentID);
   };
   //Hàm thêm kênh
   const addChannel = (id, title) => {
-    return Server.addChannel(id, title, setAllChannel, setContentID);
+    return ChannelServer.addChannel(id, title, setAllChannel, setContentID);
   };
 
   //callback lấy id của kênh cần xem thông tin
@@ -41,7 +41,7 @@ function Home() {
   };
 
   useEffect(() => {
-    Server.getFromServer(false, setAllChannel, setContentID);
+    ChannelServer.getFromServer(false, setAllChannel, setContentID);
     console.log('allchannels', allchannels);
     // eslint-disable-next-line
   }, []);

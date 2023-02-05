@@ -1,12 +1,12 @@
 import { serverAPIs } from './Api';
 
-class Server {
+class ChannelServer {
   getFromServer(bool, setAllChannel, setContentID) {
     const inputOptions = {
       method: 'GET',
       headers: serverAPIs.headers,
     };
-    fetch(serverAPIs.server + 'channels/load', inputOptions)
+    fetch(serverAPIs.server + serverAPIs.routes.channels.load, inputOptions)
       .then(rs => rs.json())
       .then(channels => {
         setAllChannel(prev => {
@@ -26,7 +26,7 @@ class Server {
       }),
     };
 
-    fetch(serverAPIs.server + 'channels/add', inputOptions)
+    fetch(serverAPIs.server + serverAPIs.routes.channels.add, inputOptions)
       .then(res => res.json())
       .then(result => {
         if (result.added === 'done') {
@@ -43,7 +43,10 @@ class Server {
       headers: serverAPIs.postheader,
     };
 
-    fetch(serverAPIs.server + `channels/${id}`, inputOptions)
+    fetch(
+      serverAPIs.server + `${serverAPIs.routes.channels.delete}${id}`,
+      inputOptions,
+    )
       .then(rs => rs.json())
       .then(rs => {
         if (rs.deleted === 'done') {
@@ -56,4 +59,4 @@ class Server {
   }
 }
 
-export default new Server();
+export default new ChannelServer();

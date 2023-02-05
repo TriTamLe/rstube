@@ -1,0 +1,66 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+@import url('../App.css');
+
+.login {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.login-frame {
+  padding: 20px;
+  margin-top: 5vh;
+  width: 30vw;
+  height: fit-content;
+  border: dashed 2px var(--darkColor);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.login-frame .logo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+.login-frame .logo p {
+  font-family: 'beVNProBold';
+  font-size: 40px;
+  color: var(--darkColor);
+}
+
+.login-frame .form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 20px 0px 20px;
+}
+
+.login-frame .form label {
+  font-size: 20px;
+  font-family: 'beVNProRegu';
+  margin: 20px 0px 5px;
+}
+
+.login-frame .form input {
+  font-family: 'beVNProLight';
+  height: 50px;
+  font-size: 20px;
+  padding: 3px;
+  border-radius: 10px;
+  border: dashed 2px var(--darkColor);
+}
+
+.login-frame .form .login_buttons {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 20px;
+}
