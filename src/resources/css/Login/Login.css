@@ -5,13 +5,15 @@
 
 @import url('../App.css');
 
-.login {
+.login,
+.register {
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.login-frame {
+.login-frame,
+.register-frame {
   padding: 20px;
   margin-top: 5vh;
   width: 30vw;
@@ -23,41 +25,48 @@
   gap: 20px;
 }
 
-.login-frame .logo {
+.login-frame .logo,
+.register-frame .logo {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: center;
   gap: 5px;
 }
-.login-frame .logo p {
+.login-frame .logo p,
+.register-frame .logo p {
   font-family: 'beVNProBold';
   font-size: 40px;
   color: var(--darkColor);
 }
 
-.login-frame .form {
+.login-frame .form,
+.register-frame .form {
   display: flex;
   flex-direction: column;
   margin: 0px 20px 0px 20px;
 }
 
-.login-frame .form label {
+.login-frame .form label,
+.register-frame .form label {
   font-size: 20px;
   font-family: 'beVNProRegu';
   margin: 20px 0px 5px;
 }
 
-.login-frame .form input {
+.login-frame .form input,
+.register-frame .form input {
   font-family: 'beVNProLight';
   height: 50px;
   font-size: 20px;
   padding: 3px;
   border-radius: 10px;
   border: dashed 2px var(--darkColor);
+  background-color: var(--bgColor);
 }
 
-.login-frame .form .login_buttons {
+.login-frame .form .login_buttons,
+.register-frame .form .register_buttons {
   margin-top: 40px;
   display: flex;
   flex-direction: row;

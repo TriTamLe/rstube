@@ -1,8 +1,19 @@
 import '../../css/Login/Login.css';
+import LoginController from '../../../app/controllers/LoginController';
 import Buttons from '../Buttons/Buton';
+import { useState } from 'react';
 
 const Login = () => {
-  const login = () => {};
+  const [status, setStatus] = useState({
+    success: true,
+    message: 'Đăng nhập thành công',
+  });
+
+  const login = () => {
+    const username = document.getElementById('username_login').value;
+    const password = document.getElementById('password_login').value;
+    return LoginController.singin(username, password, setStatus);
+  };
 
   return (
     <div className='login'>
@@ -17,17 +28,21 @@ const Login = () => {
           <p>RSTube</p>
         </div>
         <div className='form'>
-          <label htmlFor='email_login'>Email</label>
+          <label htmlFor='username_login'>Tên đăng nhập</label>
           <input
-            type='email'
-            name='email_login'
-            placeholder='someone@something.com'
+            type='text'
+            name='username_login'
+            id='username_login'
+            placeholder='RSTubeUser1'
+            required
           />
-          <label htmlFor='pass_login'>Password</label>
+          <label htmlFor='password_login'>Mật khẩu</label>
           <input
             type='password'
-            name='pasword_login'
+            name='password_login'
+            id='password_login'
             placeholder='qwe123!@#QWE'
+            required
           />
           <div className='login_buttons'>
             <Buttons kind='secondary' value='Đăng ký' link='/register' />

@@ -4,7 +4,10 @@ class ChannelServer {
   getFromServer(bool, setAllChannel, setContentID) {
     const inputOptions = {
       method: 'GET',
-      headers: serverAPIs.headers,
+      headers: {
+        ...serverAPIs.GETheaders,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
     };
     fetch(serverAPIs.server + serverAPIs.routes.channels.load, inputOptions)
       .then(rs => rs.json())
@@ -19,7 +22,10 @@ class ChannelServer {
   addChannel(id, title, setAllChannel, setContentID) {
     const inputOptions = {
       method: 'POST',
-      headers: serverAPIs.postheader,
+      headers: {
+        ...serverAPIs.POSTheader,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
       body: JSON.stringify({
         channelId: id,
         title: title,
@@ -40,7 +46,10 @@ class ChannelServer {
   deleteChannel(id, setAllChannel, setContentID) {
     const inputOptions = {
       method: 'DELETE',
-      headers: serverAPIs.postheader,
+      headers: {
+        ...serverAPIs.POSTheader,
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
     };
 
     fetch(

@@ -18,19 +18,17 @@ export const serverAPIs = {
     Accept: '*/*',
     'Accept-Encoding': 'gzip, deflate, br',
     Connection: 'keep-alive',
-    Authorization: 'Bearer',
   },
   POSTheader: {
     Accept: '*/*',
     'Accept-Encoding': 'gzip, deflate, br',
     Connection: 'keep-alive',
     'Content-Type': 'application/json',
-    Authorization: 'Bearer',
   },
   routes: {
     users: {
-      signIn: '/user/signin',
-      register: '/user/register',
+      signIn: 'user/signin',
+      register: 'user/register',
     },
     channels: {
       load: 'channels/load',
