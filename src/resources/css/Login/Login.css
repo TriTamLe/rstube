@@ -65,6 +65,10 @@
   background-color: var(--bgColor);
 }
 
+input:disabled {
+  filter: brightness(85%);
+}
+
 .login-frame .form .login_buttons,
 .register-frame .form .register_buttons {
   margin-top: 40px;
@@ -72,4 +76,12 @@
   flex-direction: row;
   justify-content: flex-end;
   gap: 20px;
+}
+
+.login-frame .form .alert,
+.register-frame .form .alert {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  font-family: 'beVNProSeBold';
+  color: var(--mainColor);
 }

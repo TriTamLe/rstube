@@ -4,6 +4,8 @@ import Content from './Content/Content';
 import Add from './Add&Delete/Add';
 import { useEffect, useState } from 'react';
 import ChannelServer from '../../config/server/Channelserver';
+import Profile from "./Profile/Profile";
+import _avatar from "../../RSTubeLogo.png";
 
 function Home() {
   const defaultFirstChannel = {
@@ -60,12 +62,20 @@ function Home() {
     };
   }, []);
 
+
+
   return (
     <div className='Home'>
       <div className='layOut'>
         <div className='header'>
-          <div id='logo'></div>
-          <div id='webName'>RSTube</div>
+          <div id='brand'>
+            <div id='logo'></div>
+            <div id='webName'>RSTube</div>
+          </div>
+          <div className={"profile-info"}>
+            <Profile avatar={_avatar} fullname={"Kadius Myalo"}/>
+          </div>
+
         </div>
 
         <div className='boards'>

@@ -20,11 +20,23 @@
   border: 1px solid var(--darkColor);
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.layOut .header .profile-info{
+  margin-right: 100px;
 }
 
-.layOut .header #logo {
+.layOut .header #brand {
+  width: 40%;
+  height: 70px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+}
+
+.layOut .header #brand #logo {
   background-image: var(--logo);
   width: 50px;
   height: 50px;
@@ -34,7 +46,7 @@
   margin-right: 10px;
 }
 
-.layOut .header #webName {
+.layOut .header #brand #webName {
   margin-top: -10px;
   font-size: 30px;
   font-family: beVNProBold;

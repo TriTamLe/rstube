@@ -3,8 +3,16 @@ import Register from './resources/components/Login/Register';
 import Login from './resources/components/Login/Login';
 import Home from './resources/components/Home';
 import './resources/css/App.css';
+import {useEffect} from "react";
 
 function App() {
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if(token === null || token===undefined) {
+      if(window.location.pathname !== "/")
+        window.location.pathname = "/";
+    }
+  },)
   return (
     <div className='app'>
       <Router>
