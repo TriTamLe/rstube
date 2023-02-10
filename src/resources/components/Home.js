@@ -4,8 +4,9 @@ import Content from './Content/Content';
 import Add from './Add&Delete/Add';
 import { useEffect, useState } from 'react';
 import ChannelServer from '../../config/server/Channelserver';
-import Profile from "./Profile/Profile";
-import _avatar from "../../RSTubeLogo.png";
+import Profile from './Profile/Profile';
+import _avatar from '../../RSTubeLogo.png';
+import { useParams } from 'react-router';
 
 function Home() {
   const defaultFirstChannel = {
@@ -17,6 +18,7 @@ function Home() {
     allchannels.length === 0 ? '#default' : allchannels[0].channelId,
   ); //Biến lưu ID của kênh muốn xem nội dung
   const [isAdding, setIsAdding] = useState(false); //Biến xác định xem người dùng có đang thêm kênh hay không
+  const params = useParams();
 
   //Hàm set lại id của kênh cần xem nội dung
   const reloadID = id => {
@@ -62,7 +64,11 @@ function Home() {
     };
   }, []);
 
-
+  useEffect(() => {
+    const username = params.username;
+    const _username = JSON.parse(localStorage.getItem('user')).username;
+    if (username !== _username) window.location.pathname = '/home/' + _username;
+  }, []);
 
   return (
     <div className='Home'>
@@ -72,10 +78,12 @@ function Home() {
             <div id='logo'></div>
             <div id='webName'>RSTube</div>
           </div>
-          <div className={"profile-info"}>
-            <Profile avatar={_avatar} fullname={"Kadius Myalo"}/>
+          <div className={'profile-info'}>
+            <Profile
+              avatar={_avatar}
+              fullname={JSON.parse(localStorage.getItem('user')).fullname}
+            />
           </div>
-
         </div>
 
         <div className='boards'>

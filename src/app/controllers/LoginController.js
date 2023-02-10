@@ -41,8 +41,8 @@ class LoginController {
           setIsFetching(false);
           localStorage.setItem('token', data.token);
           localStorage.setItem('user', JSON.stringify(data.user));
-          console.log(data);
-          window.location.pathname = '/home';
+          const username = data.user.username;
+          window.location.pathname = '/home/@' + username;
         })
         .catch(err => {
           console.log('ERROR', err);

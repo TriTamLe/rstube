@@ -107,7 +107,7 @@ const Register = () => {
             type='password'
             name='pass_register'
             id='pass_register'
-            placeholder='...'
+            placeholder='*********'
             required
           />
 
@@ -122,7 +122,7 @@ const Register = () => {
             type='password'
             name='confpass_register'
             id='confpass_register'
-            placeholder='...'
+            placeholder='*********'
             required
           />
 
