@@ -1,5 +1,5 @@
-const PORT = 3001;
-const domain = 'localhost';
+// const PORT = 5000;
+// const domain = 'localhost';
 
 export const api = {
   link: 'https://www.youtube.com/feeds/videos.xml?channel_id=',
@@ -13,7 +13,7 @@ export const youtbeDataAPI = {
 };
 
 export const serverAPIs = {
-  server: `http://${domain}:${PORT}/`,
+  server: `https://rstube-server.herokuapp.com/`,
   GETheaders: {
     Accept: '*/*',
     'Accept-Encoding': 'gzip, deflate, br',
