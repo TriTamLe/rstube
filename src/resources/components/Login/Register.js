@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import '../../css/Login/Login.css';
 import Buttons from '../Buttons/Buton';
-import LoginController from '../../../app/controllers/LoginController';
+import LoginController from '../../../app/controllers/login.controller';
 
 const Register = () => {
   const [status, setStatus] = useState({

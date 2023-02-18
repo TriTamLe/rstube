@@ -1,5 +1,5 @@
 import '../../css/Login/Login.css';
-import LoginController from '../../../app/controllers/LoginController';
+import LoginController from '../../../app/controllers/login.controller';
 import Buttons from '../Buttons/Buton';
 import { useState } from 'react';
 

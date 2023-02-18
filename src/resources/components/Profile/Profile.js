@@ -1,6 +1,6 @@
 import '../../css/Profile/Profile.css';
 import { useEffect, useRef, useState } from 'react';
-import profileController from '../../../app/controllers/ProfileController';
+import profileController from '../../../app/controllers/profile.controller';
 
 const Profile = ({ avatar, fullname }) => {
   const [openDrop, setOpenDrop] = useState(false);

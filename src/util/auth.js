@@ -1,4 +1,4 @@
-class Verify {
+class Authentication {
   verifyLogin({ username, password }) {
     const errors = [];
     if (!username) errors.push('Not username');
@@ -17,4 +17,4 @@ class Verify {
   }
 }
 
-export default new Verify();
+export default new Authentication();

@@ -3,7 +3,7 @@ import Navigate from './Navigate/Navigate';
 import Content from './Content/Content';
 import Add from './Add&Delete/Add';
 import { useEffect, useState } from 'react';
-import ChannelServer from '../../config/server/Channelserver';
+import ChannelServer from '../../config/server/channel.server';
 import Profile from './Profile/Profile';
 import _avatar from '../../RSTubeLogo.png';
 import { useParams } from 'react-router';

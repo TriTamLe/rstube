@@ -1,4 +1,4 @@
-class Agro {
+class Algo {
   xmlToJson(xml) {
     // Create the return object
     var obj = {};
@@ -39,4 +39,4 @@ class Agro {
   }
 }
 
-export default new Agro();
+export default new Algo();

@@ -1,4 +1,4 @@
-import { serverAPIs } from './Api';
+import { serverAPIs } from './api.server';
 
 class ChannelServer {
   getFromServer(bool, setAllChannel, setContentID) {

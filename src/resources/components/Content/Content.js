@@ -2,10 +2,10 @@ import { useEffect } from 'react';
 import Artical from '../Content/Artical';
 import DeleteChannelSVG from './ContentSVGs/DeleteChannelSVG';
 import ReloadChannelSVG from './ContentSVGs/ReloadChannelSVG';
-import { api } from '../../../config/server/Api';
+import { api } from '../../../config/server/api.server';
 import { useState } from 'react';
 import '../../css/Content/Content.css';
-import ContentController from '../../../app/controllers/ContentController';
+import ContentController from '../../../app/controllers/content.controller';
 
 function Content(props) {
   const [_content, setContent] = useState({

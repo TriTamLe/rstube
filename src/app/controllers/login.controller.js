@@ -1,5 +1,5 @@
-import { serverAPIs } from '../../config/server/Api';
-import verify from '../../util/verify';
+import { serverAPIs } from '../../config/server/api.server';
+import verify from '../../util/auth';
 
 class LoginController {
   singin(username, password, setStatus, setIsFetching) {

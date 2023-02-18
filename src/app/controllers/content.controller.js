@@ -1,5 +1,5 @@
-import Agro from '../../util/Agro';
-import { api } from '../../config/server/Api';
+import Agro from '../../util/algorithm';
+import { api } from '../../config/server/api.server';
 
 class ContentController {
   loadContent = (props, setContent) => {
