@@ -14,7 +14,7 @@ function Add({ openCallback, addCallback, allchannels }) {
 
   const fetchingData = text => {
     if (text === '') {
-      setPreview('');
+      setPreview([]);
       return;
     }
     return adding.fetchingChannel(text, limit, checkFollowed, setPreview);
