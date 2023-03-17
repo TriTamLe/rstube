@@ -22,6 +22,7 @@ function Add({ openCallback, addCallback, allchannels }) {
   };
 
   const inputChange = e => {
+    console.log('CHANGE');
     setInputText(e.target.value);
   };
 
