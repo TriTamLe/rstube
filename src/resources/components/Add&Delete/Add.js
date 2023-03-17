@@ -5,6 +5,7 @@ import adding from '../../../app/controllers/add.controller';
 
 function Add({ openCallback, addCallback, allchannels }) {
   const [_preview, setPreview] = useState([]);
+  const [inputText, setInputText] = useState('');
   const limit = 7;
 
   const checkFollowed = id => {
@@ -27,14 +28,15 @@ function Add({ openCallback, addCallback, allchannels }) {
   useEffect(() => {
     const inputChannel = document.getElementById('inputChannel');
     inputChannel.focus();
-    inputChannel.addEventListener('keydown', e => {
-      if (e.keyCode === 13) {
-        e.preventDefault();
-        fetchingData(e.target.value);
-        inputChannel.blur();
-      }
-    });
   }, []);
+
+  useEffect(() => {
+    const delayType = setTimeout(() => {
+      fetchingData(inputText);
+    }, 500);
+
+    return clearInterval(delayType);
+  }, [inputText]);
 
   return (
     <div className='adding'>
@@ -46,6 +48,10 @@ function Add({ openCallback, addCallback, allchannels }) {
             autoComplete='off'
             onFocus={() => {
               fetchingData('');
+            }}
+            value={inputText}
+            onChange={event => {
+              setInputText(event.target.value);
             }}
           />
         </div>
