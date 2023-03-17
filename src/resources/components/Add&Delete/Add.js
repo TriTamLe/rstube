@@ -21,6 +21,10 @@ function Add({ openCallback, addCallback, allchannels }) {
     return adding.fetchingChannel(text, limit, checkFollowed, setPreview);
   };
 
+  const inputChange = e => {
+    setInputText(e.target.value);
+  };
+
   const exitAdding = () => {
     openCallback(false);
   };
@@ -50,9 +54,7 @@ function Add({ openCallback, addCallback, allchannels }) {
               fetchingData('');
             }}
             value={inputText}
-            onChange={event => {
-              setInputText(event.target.value);
-            }}
+            onChange={inputChange}
           />
         </div>
         <div className='exit'>
