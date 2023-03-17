@@ -24,7 +24,6 @@ function Add({ openCallback, addCallback, allchannels }) {
   const inputChange = e => {
     console.log('CHANGE');
     setInputText(e.target.value);
-    console.log(inputText);
   };
 
   const exitAdding = () => {
@@ -37,11 +36,14 @@ function Add({ openCallback, addCallback, allchannels }) {
   }, []);
 
   useEffect(() => {
+    console.log('fetc..');
     const delayType = setTimeout(() => {
       fetchingData(inputText);
     }, 500);
 
-    return clearInterval(delayType);
+    return () => {
+      clearInterval(delayType);
+    };
   }, [inputText]);
 
   return (
@@ -52,9 +54,9 @@ function Add({ openCallback, addCallback, allchannels }) {
             type='text'
             id='inputChannel'
             autoComplete='off'
-            onFocus={() => {
-              fetchingData('');
-            }}
+            // onFocus={() => {
+            //   fetchingData('');
+            // }}
             value={inputText}
             onChange={inputChange}
           />
